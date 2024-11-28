@@ -269,8 +269,82 @@ public class DataAccessLayer {
         session = sessionFactory.openSession();
         session.beginTransaction();
         Categories categories = session.get(Categories.class, id);
-
+        categories.setCategoriesName(updatecategories.getCategoriesName());
+        categories.setCategoriesDescription(updatecategories.getCategoriesDescription());
+        session.merge(categories);
+        session.getTransaction().commit();
     }
+
+    public void updateOrder(long id,Order updateorder){
+        session = sessionFactory.openSession();
+        session.beginTransaction();
+        Order order = session.get(Order.class, id);
+        order.setOrderDate(updateorder.getOrderDate());
+        order.setOrderTotalAmount(updateorder.getOrderTotalAmount());
+        order.setOrderStatus(updateorder.getOrderStatus());
+        session.merge(order);
+        session.getTransaction().commit();
+    }
+
+    public void updateOrderItem(long id,OrderItem updateorderitem){
+        session = sessionFactory.openSession();
+        session.beginTransaction();
+        OrderItem orderItem = session.get(OrderItem.class, id);
+        orderItem.setOrderItemQuanity(updateorderitem.getOrderItemQuanity());
+        orderItem.setOrderItemPrice(updateorderitem.getOrderItemPrice());
+        session.merge(orderItem);
+        session.getTransaction().commit();
+    }
+
+    public void updatePayments(long id,Payments updatepayments){
+        session = sessionFactory.openSession();
+        session.beginTransaction();
+        Payments payments = session.get(Payments.class, id);
+        payments.setPaymentsPaymentDate(updatepayments.getPaymentsPaymentDate());
+        payments.setPaymentsAmount(updatepayments.getPaymentsAmount());
+        payments.setPaymentsPaymentsMethod(updatepayments.getPaymentsPaymentsMethod());
+        session.merge(payments);
+        session.getTransaction().commit();
+    }
+
+    public void updateProducts(long id,Products updateproducts){
+        session = sessionFactory.openSession();
+        session.beginTransaction();
+        Products products = session.get(Products.class, id);
+        products.setProductsName(updateproducts.getProductsName());
+        products.setProductsDescription(updateproducts.getProductsDescription());
+        products.setProductsPrice(updateproducts.getProductsPrice());
+        products.setProductsStockQuanity(updateproducts.getProductsStockQuanity());
+        session.merge(products);
+        session.getTransaction().commit();
+    }
+
+    public void updateReviews(long id,Reviews updatereviews){
+        session = sessionFactory.openSession();
+        session.beginTransaction();
+        Reviews reviews = session.get(Reviews.class, id);
+        reviews.setReviewsRating(updatereviews.getReviewsRating());
+        reviews.setReviewsComment(updatereviews.getReviewsComment());
+        reviews.setReviewsReviewDate(updatereviews.getReviewsReviewDate());
+        session.merge(reviews);
+        session.getTransaction().commit();
+    }
+
+    public void updateUsers(long id,Users updatereusers){
+        session = sessionFactory.openSession();
+        session.beginTransaction();
+        Users users = session.get(Users.class, id);
+        users.setUserName(updatereusers.getUserName());
+        users.setUserPasswordHash(updatereusers.getUserPasswordHash());
+        users.setUserEmail(updatereusers.getUserEmail());
+        users.setUserFirstName(updatereusers.getUserFirstName());
+        users.setUserLastName(updatereusers.getUserLastName());
+        session.merge(users);
+        session.getTransaction().commit();
+    }
+
+
+
 
 
 

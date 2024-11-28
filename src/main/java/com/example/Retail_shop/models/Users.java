@@ -10,15 +10,15 @@ public class Users {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "userd_id")
-    private int userdId;
+    private long userdId;
     @Column(name = "user_name")
     private String userName;
     @Column(name = "password_hash")
-    private String passwordHash;
+    private String userPasswordHash;
     @Column(name = "user_email")
     private String userEmail;
     @Column(name = "first_name")
-    private String firstName;
+    private String userFirstName;
     @Column(name = "last_name")
-    private String lastName;
+    private String userLastName;
 }

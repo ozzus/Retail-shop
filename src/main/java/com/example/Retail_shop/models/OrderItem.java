@@ -11,9 +11,7 @@ public class OrderItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "order_items_id")
-    private int orderItemId;
-    @Column(name = "order_items_order_id")
-    private int orderItemOrderId;
+    private long orderItemId;
     @Column(name = "order_items_quanity")
     private int orderItemQuanity;
     @Column(name = "order_items_price")

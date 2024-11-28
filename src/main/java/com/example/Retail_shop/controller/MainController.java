@@ -57,7 +57,7 @@ public class MainController {
         return ResponseEntity.ok("Reviews created");
     }
 
-    @PostMapping("/create/user")
+    @PostMapping("/create/users")
     public ResponseEntity<String> createUsers(@RequestBody Users user) {
         dataAccessLayer.createUsers(user);
         return ResponseEntity.ok("Users created");
@@ -183,12 +183,44 @@ public class MainController {
 //    Patch
 
     @PatchMapping("/patch/categories/{id}")
-    public ResponseEntity<Categories> updateCategories(@RequestBody Categories categories, @PathVariable long id) {}
+    public ResponseEntity<Categories> updateCategories(@PathVariable("id") long id,@RequestBody Categories categories) {
+        dataAccessLayer.updateCategories(id, categories);
+        return ResponseEntity.ok(categories);
+    }
 
+    @PatchMapping("/patch/order/{id}")
+    public ResponseEntity<Order> updateOrder(@PathVariable("id") long id,@RequestBody Order order) {
+        dataAccessLayer.updateOrder(id, order);
+        return ResponseEntity.ok(order);
+    }
 
+    @PatchMapping("/patch/order_item/{id}")
+    public ResponseEntity<OrderItem> updateOrderItem(@PathVariable("id") long id,@RequestBody OrderItem orderItem) {
+        dataAccessLayer.updateOrderItem(id, orderItem);
+        return ResponseEntity.ok(orderItem);
+    }
 
+    @PatchMapping("/patch/payments/{id}")
+    public ResponseEntity<Payments> updatePayments(@PathVariable("id") long id,@RequestBody Payments payments) {
+        dataAccessLayer.updatePayments(id, payments);
+        return ResponseEntity.ok(payments);
+    }
 
+    @PatchMapping("/patch/products/{id}")
+    public ResponseEntity<Products> updateProducts(@PathVariable("id") long id,@RequestBody Products products) {
+        dataAccessLayer.updateProducts(id, products);
+        return ResponseEntity.ok(products);
+    }
 
+    @PatchMapping("/patch/reviews/{id}")
+    public ResponseEntity<Reviews> updateReviews(@PathVariable("id") long id,@RequestBody Reviews reviews) {
+        dataAccessLayer.updateReviews(id, reviews);
+        return ResponseEntity.ok(reviews);
+    }
 
-
+    @PatchMapping("/patch/users/{id}")
+    public ResponseEntity<Users> updateUsers(@PathVariable("id") long id,@RequestBody Users users) {
+        dataAccessLayer.updateUsers(id, users);
+        return ResponseEntity.ok(users);
+    }
 }

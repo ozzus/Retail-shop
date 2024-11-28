@@ -10,6 +10,8 @@ import lombok.Data;
 public class Payments {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
+    @Column(name = "payments_id")
+    private long paymentsId;
     @Column(name = "payments_payment_date")
     private int paymentsPaymentDate;
     @Column(name = "payments_amount")

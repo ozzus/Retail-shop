@@ -10,7 +10,7 @@ public class Products {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "products_id")
-    private int productsId;
+    private long productsId;
     @Column(name = "products_name")
     private String productsName;
     @Column(name = "products_description")
@@ -18,9 +18,8 @@ public class Products {
     @Column(name = "products_price")
     private double productsPrice;
     @Column(name = "products_stock_quanity")
-    private double productsStockQuanity;
-    @Column(name = "products_category_id")
-    private int productsCategoryId;
+    private int productsStockQuanity;
+
 }
 
 

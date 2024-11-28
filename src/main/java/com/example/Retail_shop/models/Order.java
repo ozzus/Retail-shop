@@ -11,9 +11,9 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "order_id")
-    private int orderId;
-    @Column(name = "order_user_id")
-    private int orderUserId;
+    private long orderId;
+    @Column(name = "order_date")
+    private String orderDate;
     @Column(name = "order_total_amount")
     private int orderTotalAmount;
     @Column(name = "order_status")
