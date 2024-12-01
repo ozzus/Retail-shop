@@ -33,7 +33,7 @@ public class MainController {
         return ResponseEntity.ok("Order created");
     }
 
-    @PostMapping("/create/order_item")
+    @PostMapping("/create/order-item")
     public ResponseEntity<String> createOrderItem(@RequestBody OrderItem orderItem) {
         dataAccessLayer.createOrderItem(orderItem);
         return ResponseEntity.ok("Order item created");
@@ -78,7 +78,7 @@ public class MainController {
         return ResponseEntity.ok("Order deleted");
     }
 
-    @DeleteMapping("/delete/order_item/{id}")
+    @DeleteMapping("/delete/order-item/{id}")
     public ResponseEntity<String> deleteOrderItemById(@PathVariable long id) {
         dataAccessLayer.deleteOrderItemById(id);
         return ResponseEntity.ok("Order item deleted");
@@ -130,7 +130,7 @@ public class MainController {
         }
     }
 
-    @GetMapping("/get/order_item/{id}")
+    @GetMapping("/get/order-item/{id}")
     public ResponseEntity<OrderItem> getOrderItemById(@PathVariable("id") long id){
         OrderItem orderItem = dataAccessLayer.getOrderItemById(id);
         if (orderItem == null) {
@@ -194,7 +194,7 @@ public class MainController {
         return ResponseEntity.ok(order);
     }
 
-    @PatchMapping("/patch/order_item/{id}")
+    @PatchMapping("/patch/order-item/{id}")
     public ResponseEntity<OrderItem> updateOrderItem(@PathVariable("id") long id,@RequestBody OrderItem orderItem) {
         dataAccessLayer.updateOrderItem(id, orderItem);
         return ResponseEntity.ok(orderItem);
