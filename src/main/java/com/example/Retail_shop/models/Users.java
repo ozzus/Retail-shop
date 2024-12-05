@@ -9,8 +9,8 @@ import lombok.Data;
 public class Users {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "userd_id")
-    private long userdId;
+    @Column(name = "user_id")
+    private long userId;
     @Column(name = "user_name")
     private String userName;
     @Column(name = "password_hash")
@@ -21,4 +21,6 @@ public class Users {
     private String userFirstName;
     @Column(name = "last_name")
     private String userLastName;
+    @Column(name = "password")
+    private String userPassword;
 }

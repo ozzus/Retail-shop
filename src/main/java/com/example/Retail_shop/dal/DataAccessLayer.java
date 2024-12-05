@@ -1,11 +1,17 @@
 package com.example.Retail_shop.dal;
 
 import com.example.Retail_shop.models.*;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Root;
+import lombok.Getter;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.List;
 
 @Component
 public class DataAccessLayer {
@@ -339,17 +345,62 @@ public class DataAccessLayer {
         users.setUserEmail(updatereusers.getUserEmail());
         users.setUserFirstName(updatereusers.getUserFirstName());
         users.setUserLastName(updatereusers.getUserLastName());
+        users.setUserPassword(updatereusers.getUserPassword());
         session.merge(users);
         session.getTransaction().commit();
     }
 
+    public String newUsersToDatabase(Users users){
+        session = sessionFactory.openSession();
+        session.beginTransaction();
+        String name  = users.getUserName();
 
+        Query query = (Query) session
+                .createQuery("FROM Users WHERE userName = :userName")
+                .setParameter("userName", name);
+        Users usersFrom = (Users) query.uniqueResult();
 
+        if (usersFrom != null) {
+            session.getTransaction().rollback();
+            session.close();
+            return "Пользователь уже существует с таким именем";
+        }
+        session.persist(users);
+        session.getTransaction().commit();
+        session.close();
+        return "Пользователь успешно добавлен";
+    }
 
+    public Users getUsersFromDatabaseByUserName(String mail){
+        session = sessionFactory.openSession();
+        session.getTransaction().begin();
+        Query<Users> query = (Query)
+                session.createQuery("FROM Users WHERE userEmail = :userEmail")
+                .setParameter("userEmail", mail);
+        Users users = query.uniqueResult();
+        if(users == null){
+            return null;
+        }
+        return users;
 
+    }
 
-
-
-
-
+    public boolean existsUsersByUserEmail(String mail){
+        session = sessionFactory.openSession();
+        session.getTransaction().begin();
+        try {
+            Query<Users> query = (Query) session
+                    .createQuery("FROM Users WHERE userEmail = :mail", Users.class)
+                    .setParameter("mail", mail);
+            Users users = query.uniqueResult();
+            if (users == null) {
+                return false;
+            }
+            return true;
+        }  finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+    }
 }
